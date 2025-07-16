@@ -1,0 +1,18 @@
+{
+  "name": "nasri-deco",
+  "version": "1.0.0",
+  "description": "Responsive website for Nasri Déco, a Tunis-based interior design firm specializing in gypsum art. Features include project gallery, client orders, contact/map, and a secure admin panel. Built with React, Node.js, Express, and SQL.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "create-vite": "^7.0.3"
+  },
+  "dependencies": {
+    "vite": "^7.0.4"
+  }
+}

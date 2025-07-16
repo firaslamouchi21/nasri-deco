@@ -1,0 +1,1 @@
+// This file has been renamed to postcss.config.cjs. Please use that file instead. 

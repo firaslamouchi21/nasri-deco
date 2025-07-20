@@ -1,3 +1,4 @@
+
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
@@ -57,4 +58,14 @@ io.on('connection', (socket) => {
 });
 
 const PORT = process.env.PORT || 5000;
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`)); 
+server.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+  console.log('Loaded env:', {
+    DB_HOST: process.env.DB_HOST,
+    DB_USER: process.env.DB_USER,
+    DB_NAME: process.env.DB_NAME,
+    ADMIN_EMAIL: process.env.ADMIN_EMAIL ? 'set' : 'not set',
+    ADMIN_PASS: process.env.ADMIN_PASS ? 'set' : 'not set',
+    JWT_SECRET: process.env.JWT_SECRET ? 'set' : 'not set',
+  });
+}); 

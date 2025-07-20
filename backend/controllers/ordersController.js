@@ -32,4 +32,22 @@ async function getAllOrders(req, res) {
   }
 }
 
-module.exports = { submitOrder, getAllOrders }; 
+async function updateOrderStatus(req, res) {
+  const { id } = req.params;
+  const { status } = req.body;
+  if (!['pending', 'confirmed', 'delivered'].includes(status)) {
+    return res.status(400).json({ error: 'Invalid status value' });
+  }
+  try {
+    const affected = await ordersModel.updateOrderStatus(id, status);
+    if (affected) {
+      res.json({ message: 'Order status updated' });
+    } else {
+      res.status(404).json({ error: 'Order not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to update order', details: error.message });
+  }
+}
+
+module.exports = { submitOrder, getAllOrders, updateOrderStatus }; 

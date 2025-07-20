@@ -3,3 +3,4 @@ uploads/
 
 # Ignore uploaded files
 backend/uploads/
+.env

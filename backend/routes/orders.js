@@ -12,6 +12,10 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 router.post('/', upload.single('image'), submitOrder);
-router.get('/admin', verifyJWT, getAllOrders);
+router.get('/', (req, res) => {
+  console.log('GET /api/orders hit');
+  getAllOrders(req, res);
+});
+router.get('/admin', getAllOrders);
 
-module.exports = router; 
+module.exports = router;

@@ -14,14 +14,18 @@ exports.getAllMaterials = async (req, res) => {
 
 exports.addMaterial = async (req, res) => {
   try {
-    const { name, category, quantity, unit, unit_price, supplier, reason } = req.body;
+    const { name, category, quantity, unit, unit_price, supplier } = req.body;
     if (!name || !quantity || !unit || !unit_price) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
-    const admin_id = req.admin ? req.admin.id : null;
-    const id = await materialsModel.addMaterial({ name, category, quantity, unit, unit_price, supplier });
-    await materialLogsModel.logMaterialChange(id, 'added', quantity, admin_id, reason || 'Initial stock');
-    res.status(201).json({ message: 'Material added', id });
+    // Set stock_quantity = quantity
+    const stock_quantity = quantity;
+    const pool = require('../config/db');
+    const [result] = await pool.query(
+      'INSERT INTO materials (name, category, quantity, unit, unit_price, supplier, stock_quantity) VALUES (?, ?, ?, ?, ?, ?, ?)',
+      [name, category, quantity, unit, unit_price, supplier, stock_quantity]
+    );
+    res.status(200).json({ message: 'Material added', id: result.insertId });
   } catch (err) {
     res.status(500).json({ error: 'Failed to add material', details: err.message });
   }

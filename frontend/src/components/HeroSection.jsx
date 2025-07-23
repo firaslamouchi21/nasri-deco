@@ -14,9 +14,6 @@ export default function HeroSection() {
           <Link to="/order" className="px-8 py-4 text-lg bg-white text-primary font-bold rounded-xl shadow-lg hover:bg-gray-100 transition border-2 border-primary">
             Demander un devis
           </Link>
-          <Link to="/contact" className="px-8 py-4 text-lg bg-primary border-2 border-white font-bold rounded-xl shadow-lg hover:bg-primary-dark transition">
-            Contact
-          </Link>
         </div>
       </div>
     </section>

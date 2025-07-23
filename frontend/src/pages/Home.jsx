@@ -79,7 +79,7 @@ function ContactForm() {
     if (!validate()) return;
     setLoading(true);
     try {
-      await api.post('/messages', form);
+      await api.post('/contact', form);
       setSuccess('Message envoyé avec succès!');
       setForm({ full_name: '', email: '', message: '' });
     } catch (err) {

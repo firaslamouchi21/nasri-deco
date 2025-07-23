@@ -1,25 +1,25 @@
 const pool = require('../config/db');
 
-exports.getAllMaterials = async () => {
+async function getAllMaterials() {
   const [rows] = await pool.query('SELECT * FROM materials ORDER BY last_updated DESC, date_added DESC');
   return rows;
-};
+}
 
-exports.getMaterialById = async (id) => {
+async function getMaterialById(id) {
   const [rows] = await pool.query('SELECT * FROM materials WHERE id = ?', [id]);
   return rows[0];
-};
+}
 
-exports.addMaterial = async (material) => {
+async function addMaterial(material) {
   const { name, category, quantity, unit, unit_price, supplier } = material;
   const [result] = await pool.query(
     'INSERT INTO materials (name, category, quantity, unit, unit_price, supplier) VALUES (?, ?, ?, ?, ?, ?)',
     [name, category, quantity, unit, unit_price, supplier]
   );
   return result.insertId;
-};
+}
 
-exports.updateMaterial = async (id, updates) => {
+async function updateMaterial(id, updates) {
   const fields = [];
   const values = [];
   for (const key in updates) {
@@ -32,12 +32,12 @@ exports.updateMaterial = async (id, updates) => {
     values
   );
   return result.affectedRows;
-};
+}
 
-exports.deleteMaterial = async (id) => {
+async function deleteMaterial(id) {
   const [result] = await pool.query('DELETE FROM materials WHERE id = ?', [id]);
   return result.affectedRows;
-};
+}
 
 // Get materials with stock below a threshold
 async function getLowStockMaterials(threshold = 20) {

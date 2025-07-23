@@ -18,6 +18,13 @@ router.post('/materials', verifyAdmin, materialsController.addMaterial);
 router.patch('/materials/:id', verifyAdmin, materialsController.updateMaterial);
 router.delete('/materials/:id', verifyAdmin, materialsController.deleteMaterial);
 
+// Financial & material control endpoints
+router.get('/financial-summary', verifyAdmin, materialsController.getFinancialSummary);
+router.get('/financial-risk', verifyAdmin, materialsController.getFinancialRisk);
+router.get('/low-stock', verifyAdmin, materialsController.getLowStockMaterials);
+router.get('/material-usage', verifyAdmin, materialsController.getMaterialUsageProjection);
+router.get('/financial-history', verifyAdmin, materialsController.getFinancialHistory);
+
 // Protected admin routes
 router.get('/users', verifyAdmin, adminController.getAllUsers);
 router.get('/messages', verifyAdmin, adminController.getAllMessages);

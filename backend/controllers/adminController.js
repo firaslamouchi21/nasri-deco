@@ -6,9 +6,10 @@ const path = require('path');
 async function adminLogin(req, res) {
   const { email, password } = req.body;
   
-  const adminEmail = process.env.ADMIN_EMAIL || ;
-  const adminPass = process.env.ADMIN_PASS || ;
-  const jwtSecret = process.env.JWT_SECRET || ;
+  const adminEmail = process.env.ADMIN_EMAIL;
+  const adminPass = process.env.ADMIN_PASS;
+  const jwtSecret = process.env.JWT_SECRET;
+  
   
   console.log('Login attempt - Email:', email, 'Expected:', adminEmail);
   

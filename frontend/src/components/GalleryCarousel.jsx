@@ -1,9 +1,12 @@
+// src/components/GalleryCarousel.jsx
 import { useEffect, useState, useRef } from 'react';
 import { fetchGallery } from '../services/api';
 
 const PLACEHOLDER_IMAGES = [
   { id: 1, before_img: '/test-avant.jpg', after_img: '/test-apres.jpg', title: 'Projet Exemple', category: 'Salon' },
 ];
+
+const API_URL = 'http://192.168.1.50:5000';
 
 export default function GalleryCarousel() {
   const [gallery, setGallery] = useState([]);
@@ -35,11 +38,19 @@ export default function GalleryCarousel() {
       </div>
       <div className="flex flex-col md:flex-row items-center justify-center gap-8 max-w-4xl mx-auto">
         <div className="w-full md:w-1/2 transition-all duration-700">
-          <img src={item.before_img} alt="Avant" className="rounded-xl shadow-lg w-full h-64 object-cover mb-2" />
+          <img
+            src={item.before_img.startsWith('http') ? item.before_img : `${API_URL}/uploads/${item.before_img}`}
+            alt="Avant"
+            className="rounded-xl shadow-lg w-full h-64 object-cover mb-2"
+          />
           <div className="text-center text-gray-500 text-sm">Avant</div>
         </div>
         <div className="w-full md:w-1/2 transition-all duration-700">
-          <img src={item.after_img} alt="Après" className="rounded-xl shadow-lg w-full h-64 object-cover mb-2" />
+          <img
+            src={item.after_img.startsWith('http') ? item.after_img : `${API_URL}/uploads/${item.after_img}`}
+            alt="Après"
+            className="rounded-xl shadow-lg w-full h-64 object-cover mb-2"
+          />
           <div className="text-center text-gray-500 text-sm">Après</div>
         </div>
       </div>
@@ -55,4 +66,4 @@ export default function GalleryCarousel() {
       </div>
     </section>
   );
-} 
+}

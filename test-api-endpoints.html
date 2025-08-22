@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Endpoints Test</title>
+</head>
+<body>
+    <h1>API Endpoints Test</h1>
+    <button onclick="testLogin()">Test Login</button>
+    <button onclick="testExpenses()">Test Add Expense</button>
+    <button onclick="testRevenues()">Test Add Revenue</button>
+    <button onclick="testMessages()">Test Messages</button>
+    <div id="results"></div>
+
+    <script>
+        let token = '';
+
+        async function testLogin() {
+            try {
+                const response = await fetch('http://localhost:5000/api/admin/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: 'admin@example.com',
+                        password: 'admin123'
+                    })
+                });
+                const data = await response.json();
+                console.log('Login response:', data);
+                if (data.token) {
+                    token = data.token;
+                    document.getElementById('results').innerHTML += '<p>✅ Login successful</p>';
+                } else {
+                    document.getElementById('results').innerHTML += '<p>❌ Login failed</p>';
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                document.getElementById('results').innerHTML += '<p>❌ Login error: ' + error.message + '</p>';
+            }
+        }
+
+        async function testExpenses() {
+            if (!token) {
+                document.getElementById('results').innerHTML += '<p>❌ Please login first</p>';
+                return;
+            }
+            try {
+                const response = await fetch('http://localhost:5000/api/admin/expenses', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        description: 'Test expense',
+                        amount: 100.00,
+                        type: 'material'
+                    })
+                });
+                const data = await response.json();
+                console.log('Expense response:', data);
+                document.getElementById('results').innerHTML += '<p>✅ Expense added successfully</p>';
+            } catch (error) {
+                console.error('Expense error:', error);
+                document.getElementById('results').innerHTML += '<p>❌ Expense error: ' + error.message + '</p>';
+            }
+        }
+
+        async function testRevenues() {
+            if (!token) {
+                document.getElementById('results').innerHTML += '<p>❌ Please login first</p>';
+                return;
+            }
+            try {
+                const response = await fetch('http://localhost:5000/api/admin/revenues', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        description: 'Test revenue',
+                        amount: 200.00
+                    })
+                });
+                const data = await response.json();
+                console.log('Revenue response:', data);
+                document.getElementById('results').innerHTML += '<p>✅ Revenue added successfully</p>';
+            } catch (error) {
+                console.error('Revenue error:', error);
+                document.getElementById('results').innerHTML += '<p>❌ Revenue error: ' + error.message + '</p>';
+            }
+        }
+
+        async function testMessages() {
+            if (!token) {
+                document.getElementById('results').innerHTML += '<p>❌ Please login first</p>';
+                return;
+            }
+            try {
+                const response = await fetch('http://localhost:5000/api/admin/messages', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                const data = await response.json();
+                console.log('Messages response:', data);
+                document.getElementById('results').innerHTML += '<p>✅ Messages loaded: ' + data.length + ' messages</p>';
+            } catch (error) {
+                console.error('Messages error:', error);
+                document.getElementById('results').innerHTML += '<p>❌ Messages error: ' + error.message + '</p>';
+            }
+        }
+    </script>
+</body>
+</html> 

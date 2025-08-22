@@ -1,15 +1,15 @@
 const pool = require('../config/db');
 
-// Create a new contact message
-async function createContact({ name, email, message }) {
+
+async function createContact({ name, email, phone, subject, message }) {
   const [result] = await pool.query(
-    'INSERT INTO messages (full_name, email, message) VALUES (?, ?, ?)',
-    [name, email, message]
+    'INSERT INTO messages (full_name, email, phone, subject, message) VALUES (?, ?, ?, ?, ?)',
+    [name, email, phone, subject, message]
   );
   return result.insertId;
 }
 
-// Get all messages (admin)
+
 async function getAllMessages() {
   const [rows] = await pool.query('SELECT * FROM messages ORDER BY created_at DESC');
   return rows;

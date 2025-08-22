@@ -12,17 +12,22 @@ router.post('/login', adminController.adminLogin);
 router.get('/orders', verifyAdmin, ordersController.getAllOrders);
 router.patch('/orders/:id', verifyAdmin, ordersController.updateOrderStatus);
 
-// Materials management
+
 router.get('/materials', verifyAdmin, materialsController.getAllMaterials);
 router.post('/materials', verifyAdmin, materialsController.addMaterial);
 router.patch('/materials/:id', verifyAdmin, materialsController.updateMaterial);
 router.delete('/materials/:id', verifyAdmin, materialsController.deleteMaterial);
+
+
+router.post('/expenses', verifyAdmin, materialsController.addExpense);
+router.post('/revenues', verifyAdmin, materialsController.addRevenue);
 
 // Financial & material control endpoints
 router.get('/financial-summary', verifyAdmin, materialsController.getFinancialSummary);
 router.get('/financial-risk', verifyAdmin, materialsController.getFinancialRisk);
 router.get('/low-stock', verifyAdmin, materialsController.getLowStockMaterials);
 router.get('/material-usage', verifyAdmin, materialsController.getMaterialUsageProjection);
+router.get('/material-usage-data', verifyAdmin, materialsController.getMaterialUsageData);
 router.get('/financial-history', verifyAdmin, materialsController.getFinancialHistory);
 
 // Protected admin routes

@@ -8,22 +8,22 @@ export default function ServicesSection() {
         <div className="grid gap-8 md:grid-cols-4 sm:grid-cols-2">
           <div className="bg-gray-50 rounded-xl shadow p-6 flex flex-col items-center hover:scale-105 transition-transform">
             <div className="text-4xl mb-3">🎨</div>
-            <h3 className="font-semibold text-lg mb-2 text-primary">Décoration Staff</h3>
+            <h3 className="font-semibold text-lg mb-2 text-primary">Décoration Int&Ext</h3>
             <p className="text-gray-600 text-center">Création de moulures, corniches, colonnes et ornements en plâtre sur mesure.</p>
           </div>
           <div className="bg-gray-50 rounded-xl shadow p-6 flex flex-col items-center hover:scale-105 transition-transform">
             <div className="text-4xl mb-3">🏛️</div>
-            <h3 className="font-semibold text-lg mb-2 text-primary">Plafonds & Faux Plafonds</h3>
+            <h3 className="font-semibold text-lg mb-2 text-primary">Placo Plâtre</h3>
             <p className="text-gray-600 text-center">Installation de plafonds artistiques et faux plafonds pour tous types d'espaces.</p>
           </div>
           <div className="bg-gray-50 rounded-xl shadow p-6 flex flex-col items-center hover:scale-105 transition-transform">
             <div className="text-4xl mb-3">🖼️</div>
-            <h3 className="font-semibold text-lg mb-2 text-primary">Rénovation & Restauration</h3>
+            <h3 className="font-semibold text-lg mb-2 text-primary">Faux Plafonds</h3>
             <p className="text-gray-600 text-center">Rénovation de décors anciens et restauration de staff abîmé ou fissuré.</p>
           </div>
           <div className="bg-gray-50 rounded-xl shadow p-6 flex flex-col items-center hover:scale-105 transition-transform">
             <div className="text-4xl mb-3">🏠</div>
-            <h3 className="font-semibold text-lg mb-2 text-primary">Conseil & Design</h3>
+            <h3 className="font-semibold text-lg mb-2 text-primary">Peinture</h3>
             <p className="text-gray-600 text-center">Accompagnement personnalisé pour sublimer votre intérieur selon vos envies.</p>
           </div>
         </div>

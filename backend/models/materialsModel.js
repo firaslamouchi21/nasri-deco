@@ -13,8 +13,8 @@ async function getMaterialById(id) {
 async function addMaterial(material) {
   const { name, category, quantity, unit, unit_price, supplier } = material;
   const [result] = await pool.query(
-    'INSERT INTO materials (name, category, quantity, unit, unit_price, supplier) VALUES (?, ?, ?, ?, ?, ?)',
-    [name, category, quantity, unit, unit_price, supplier]
+    'INSERT INTO materials (name, category, quantity, unit, unit_price, supplier, stock_quantity) VALUES (?, ?, ?, ?, ?, ?, ?)',
+    [name, category, quantity, unit, unit_price, supplier, quantity]
   );
   return result.insertId;
 }

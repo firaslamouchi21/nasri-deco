@@ -10,8 +10,13 @@ CREATE TABLE IF NOT EXISTS gallery (
     id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(255) NOT NULL,
     category VARCHAR(100),
+    description TEXT,
     before_img VARCHAR(255),
     after_img VARCHAR(255),
+    before_type VARCHAR(10),
+    after_type VARCHAR(10),
+    before_url VARCHAR(255),
+    after_url VARCHAR(255),
     uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -40,6 +45,8 @@ CREATE TABLE IF NOT EXISTS messages (
   id INT PRIMARY KEY AUTO_INCREMENT,
   full_name VARCHAR(100),
   email VARCHAR(100),
+  phone VARCHAR(20),
+  subject VARCHAR(255),
   message TEXT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

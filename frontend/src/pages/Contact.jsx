@@ -31,25 +31,43 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      toast({
-        title: "Message envoyé !",
-        description: "Nous vous répondrons dans les plus brefs délais.",
+      const response = await fetch('http://localhost:5000/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          full_name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          subject: formData.subject,
+          message: formData.message
+        }),
       });
 
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: ''
-      });
+      const data = await response.json();
+
+      if (response.ok) {
+        toast({
+          title: "Message envoyé !",
+          description: "Nous vous répondrons dans les plus brefs délais.",
+        });
+
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          subject: '',
+          message: ''
+        });
+      } else {
+        throw new Error(data.error || 'Erreur lors de l\'envoi');
+      }
     } catch (error) {
+      console.error('Contact form error:', error);
       toast({
         title: "Erreur",
-        description: "Une erreur s'est produite. Veuillez réessayer.",
+        description: error.message || "Une erreur s'est produite. Veuillez réessayer.",
         variant: "destructive",
       });
     } finally {
@@ -243,6 +261,33 @@ const Contact = () => {
                 </Card>
               ))}
             </div>
+
+            {/* Map Section */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <MapPin className="w-5 h-5 text-primary" />
+                  Notre localisation
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="w-full h-96 rounded-lg overflow-hidden">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12764.825789!2d10.1815!3d36.8065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzbCsDQ4JzIzLjQiTiAxMMKwMTAnNTMuNCJF!5e0!3m2!1sfr!2stn!4v1234567890"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Nasri Deco - Tunis, Tunisie"
+                  ></iframe>
+                </div>
+                <p className="text-sm text-muted-foreground mt-3 text-center">
+                  📍 Tunis, Tunisie - Nous servons toute la région
+                </p>
+              </CardContent>
+            </Card>
 
             {/* Additional Info */}
             <Card className="bg-accent/5 border-accent/20">

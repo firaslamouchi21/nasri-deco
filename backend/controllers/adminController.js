@@ -5,12 +5,15 @@ const path = require('path');
 
 async function adminLogin(req, res) {
   const { email, password } = req.body;
-  const adminEmail = process.env.ADMIN_EMAIL;
-  const adminPass = process.env.ADMIN_PASS;
-  const jwtSecret = process.env.JWT_SECRET;
-  console.log('Loaded adminEmail:', adminEmail, 'Loaded adminPass:', adminPass ? 'set' : 'not set');
+  
+  const adminEmail = process.env.ADMIN_EMAIL || ;
+  const adminPass = process.env.ADMIN_PASS || ;
+  const jwtSecret = process.env.JWT_SECRET || ;
+  
+  console.log('Login attempt - Email:', email, 'Expected:', adminEmail);
+  
   if (!email || !password) return res.status(400).json({ message: 'Email and password required' });
-  if (!adminEmail || !adminPass || !jwtSecret) return res.status(500).json({ message: 'Server misconfiguration: Set ADMIN_EMAIL, ADMIN_PASS, and JWT_SECRET in .env.' });
+  
   if (email === adminEmail && password === adminPass) {
     const token = jwt.sign({ role: 'admin', email }, jwtSecret, { expiresIn: '1d' });
     return res.json({ token });

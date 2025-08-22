@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Test</title>
+</head>
+<body>
+    <h1>API Test</h1>
+    <button onclick="testLogin()">Test Login</button>
+    <button onclick="testMaterials()">Test Materials</button>
+    <button onclick="testFinancial()">Test Financial</button>
+    <div id="results"></div>
+
+    <script>
+        let token = '';
+
+        async function testLogin() {
+            try {
+                const response = await fetch('http://localhost:5000/api/admin/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: 'admin@example.com',
+                        password: 'admin123'
+                    })
+                });
+                const data = await response.json();
+                console.log('Login response:', data);
+                if (data.token) {
+                    token = data.token;
+                    document.getElementById('results').innerHTML += '<p>✅ Login successful</p>';
+                } else {
+                    document.getElementById('results').innerHTML += '<p>❌ Login failed</p>';
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                document.getElementById('results').innerHTML += '<p>❌ Login error: ' + error.message + '</p>';
+            }
+        }
+
+        async function testMaterials() {
+            if (!token) {
+                document.getElementById('results').innerHTML += '<p>❌ Please login first</p>';
+                return;
+            }
+            try {
+                const response = await fetch('http://localhost:5000/api/admin/materials', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                const data = await response.json();
+                console.log('Materials response:', data);
+                document.getElementById('results').innerHTML += '<p>✅ Materials loaded: ' + data.length + ' materials</p>';
+            } catch (error) {
+                console.error('Materials error:', error);
+                document.getElementById('results').innerHTML += '<p>❌ Materials error: ' + error.message + '</p>';
+            }
+        }
+
+        async function testFinancial() {
+            if (!token) {
+                document.getElementById('results').innerHTML += '<p>❌ Please login first</p>';
+                return;
+            }
+            try {
+                const response = await fetch('http://localhost:5000/api/admin/financial-summary', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                const data = await response.json();
+                console.log('Financial response:', data);
+                document.getElementById('results').innerHTML += '<p>✅ Financial summary: ' + JSON.stringify(data) + '</p>';
+            } catch (error) {
+                console.error('Financial error:', error);
+                document.getElementById('results').innerHTML += '<p>❌ Financial error: ' + error.message + '</p>';
+            }
+        }
+    </script>
+</body>
+</html> 

@@ -25,7 +25,7 @@ export default function HeroSection() {
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
                 Bienvenue chez{' '}
-                <span className="text-accent">Nasri Déco</span>
+                <span className="text-accent">Nasri Deco Plus</span>
               </h1>
               <p className="text-xl lg:text-2xl text-white/90 leading-relaxed max-w-2xl">
                 Spécialistes du staff artistique et de la décoration en plâtre (gypsum).
@@ -94,7 +94,7 @@ export default function HeroSection() {
                   A
                 </div>
                 <div>
-                  <div className="font-semibold text-foreground">Ahmed Ben Ali</div>
+                  <div className="font-semibold text-foreground">SO.TRA.BA.SUD</div>
                   <div className="text-sm text-muted-foreground">Client satisfait</div>
                 </div>
               </div>

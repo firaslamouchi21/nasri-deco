@@ -7,12 +7,12 @@ export default function TestimonialsSection() {
           <div className="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center">
             <div className="w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center text-2xl font-bold mb-4">A</div>
             <p className="text-gray-700 italic mb-2">"Un travail exceptionnel, très professionnel et créatif. Je recommande vivement Nasri Déco !"</p>
-            <div className="text-primary font-semibold">Amine B.</div>
+            <div className="text-primary font-semibold">STE PRO IMMOBILIERE         LA CIBLE</div>
           </div>
           <div className="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center">
             <div className="w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center text-2xl font-bold mb-4">S</div>
             <p className="text-gray-700 italic mb-2">"Le staff de mon salon est magnifique, merci pour votre sérieux et votre écoute."</p>
-            <div className="text-primary font-semibold">Sonia L.</div>
+            <div className="text-primary font-semibold"></div>
           </div>
           <div className="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center">
             <div className="w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center text-2xl font-bold mb-4">M</div>

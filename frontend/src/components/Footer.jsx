@@ -15,7 +15,7 @@ const Footer = () => {
                 <span className="text-primary-foreground font-bold text-xl">N</span>
               </div>
               <div>
-                <h3 className="text-xl font-bold text-primary">Nasri Déco</h3>
+                <h3 className="text-xl font-bold text-primary">Nasri Déco plus</h3>
                 <p className="text-sm text-muted-foreground">Staff & Décoration</p>
               </div>
             </div>
@@ -107,18 +107,21 @@ const Footer = () => {
               <div className="flex items-center space-x-3">
                 <Phone className="w-4 h-4 text-primary" />
                 <a href="tel:27211847" className="hover:text-primary transition-colors">
-                  27 211 847
+                  23381879
+                </a>
+                <a href="tel:27211847" className="hover:text-primary transition-colors">
+                  97543928
                 </a>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-4 h-4 text-primary" />
-                <a href="mailto:firas.lamou@gmail.com" className="hover:text-primary transition-colors">
-                  firas.lamou@gmail.com
+                <a href="mailto:nasri.decoplus@gmail.com" className="hover:text-primary transition-colors">
+                  nasri.decoplus@gmail.com
                 </a>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="w-4 h-4 text-primary" />
-                <span>Tunis, Tunisie</span>
+                <span>laffyette,Tunis, Tunisie</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Clock className="w-4 h-4 text-primary" />

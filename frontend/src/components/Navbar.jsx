@@ -47,11 +47,17 @@ const Navbar = () => {
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
-            <div className="w-10 h-10 gradient-primary rounded-lg flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-xl">N</span>
-            </div>
+          <div className="w-10 h-10 gradient-primary rounded-lg flex items-center justify-center overflow-hidden">
+  <img 
+    src="/WhatsApp Image 2025-08-22 at 12.25.14.jpeg" 
+    alt="Logo" 
+    className="w-full h-full object-contain"
+  />
+</div>
+
+
             <div>
-              <h1 className="text-xl font-bold text-primary">Nasri Déco</h1>
+              <h1 className="text-xl font-bold text-primary">Nasri Déco plus</h1>
               <p className="text-xs text-muted-foreground">Staff & Décoration</p>
             </div>
           </Link>
@@ -125,7 +131,7 @@ const Navbar = () => {
                 <div className="flex items-center space-x-2 text-sm text-muted-foreground">
                   <Mail className="w-4 h-4" />
                   <a href="mailto:firas.lamou@gmail.com" className="hover:text-primary transition-colors">
-                    firas.lamou@gmail.com
+                   nasri.decoplus@gmail.com
                   </a>
                 </div>
               </div>

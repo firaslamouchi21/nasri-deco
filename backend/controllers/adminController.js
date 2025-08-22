@@ -5,21 +5,18 @@ const path = require('path');
 
 async function adminLogin(req, res) {
   const { email, password } = req.body;
-  
+
   const adminEmail = process.env.ADMIN_EMAIL;
   const adminPass = process.env.ADMIN_PASS;
   const jwtSecret = process.env.JWT_SECRET;
-  
-  
-  console.log('Login attempt - Email:', email, 'Expected:', adminEmail);
-  
+
   if (!email || !password) return res.status(400).json({ message: 'Email and password required' });
-  
+
   if (email === adminEmail && password === adminPass) {
     const token = jwt.sign({ role: 'admin', email }, jwtSecret, { expiresIn: '1d' });
     return res.json({ token });
   } else {
-    return res.status(401).json({ message: 'Identifiants invalides' });
+    return res.status(401).json({ message: 'Invalid credentials' });
   }
 }
 
@@ -45,6 +42,7 @@ function getAllUploads(req, res) {
   const uploadsDir = path.join(__dirname, '../uploads');
   fs.readdir(uploadsDir, (err, files) => {
     if (err) return res.status(500).json({ error: 'Failed to read uploads' });
+
     const uploads = files.map(filename => {
       const stats = fs.statSync(path.join(uploadsDir, filename));
       return {
@@ -62,7 +60,4 @@ module.exports = {
   getAllUsers,
   getAllMessages,
   getAllUploads
-}; 
-console.log("Loaded admin credentials:");
-console.log("Email:", process.env.ADMIN_EMAIL);
-console.log("Password:", process.env.ADMIN_PASS);
+};
